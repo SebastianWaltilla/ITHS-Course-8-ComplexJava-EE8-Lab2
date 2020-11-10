@@ -33,9 +33,7 @@ public class PlayerRest {
     @Path("getPlayerById/{id}")
     @GET
     public Response getPlayerById(@PathParam("id") Long id){
-
         return Response.ok(playerService.findPlayerById(id)).build();
-
     }
 
     @Path("updatePlayer")
@@ -44,6 +42,10 @@ public class PlayerRest {
             return Response.ok(playerService.updatePlayer(player)).build();
     }
 
-
+    @Path("deletePlayer/{id}")
+    @DELETE
+    public Response deleteItem(@PathParam("id") Long id) {
+        return Response.ok(playerService.deletePlayer(id)).build();
+    }
 
 }

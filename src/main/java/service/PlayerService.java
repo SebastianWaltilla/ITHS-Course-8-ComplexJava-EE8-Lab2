@@ -33,14 +33,11 @@ public class PlayerService {
     }
 
 
-
-
-    public PlayerData updateTodo(PlayerData player) {
-        entityManager.merge(player);
+    public PlayerData deletePlayer(Long id){
+        PlayerData player = entityManager.find(PlayerData.class, id);
+        entityManager.remove(player);
         return player;
     }
-
-
 
 
 
