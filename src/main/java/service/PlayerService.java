@@ -40,5 +40,8 @@ public class PlayerService {
     }
 
 
+    public List<PlayerData> getByLastName(String name) {
+        return entityManager.createQuery("SELECT e FROM PlayerData e WHERE e.lastname = \'"+ name +"\'", PlayerData.class).getResultList();
 
+    }
 }

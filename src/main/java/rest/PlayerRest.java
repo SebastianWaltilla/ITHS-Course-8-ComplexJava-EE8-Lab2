@@ -6,6 +6,7 @@ import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.awt.datatransfer.StringSelection;
 import java.util.List;
 
 @Path("item")
@@ -45,7 +46,22 @@ public class PlayerRest {
     @Path("deletePlayer/{id}")
     @DELETE
     public Response deleteItem(@PathParam("id") Long id) {
-        return Response.ok(playerService.deletePlayer(id)).build();
+        PlayerData aPlayer = playerService.findPlayerById(id);
+        if (aPlayer != null){
+            playerService.deletePlayer(id);
+            return Response.ok(aPlayer).entity("Player with ID " + id + " deleted.").build();
+        }else  {
+            return Response.noContent().build();
+        }
     }
+
+    @Path("getByLastName/{name}")
+    @GET
+    public Response getByLastName(@PathParam("name") String name) {
+        List<PlayerData> hej = playerService.getByLastName(name);
+        return Response.ok(hej).build();
+    }
+
+
 
 }
