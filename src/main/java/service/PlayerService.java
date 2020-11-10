@@ -13,23 +13,29 @@ public class PlayerService {
     @PersistenceContext
     EntityManager entityManager;
 
-    public PlayerData createStudent(PlayerData player) {
+        public PlayerData createStudent(PlayerData player) {
         entityManager.persist(player);
         return player;
     }
+
+    public List<PlayerData> getAllPlayers() {
+        return entityManager.createQuery("SELECT s from PlayerData s", PlayerData.class).getResultList();
+    }
+
+    public PlayerData findPlayerById(Long id) {
+        return entityManager.find(PlayerData.class, id);
+    }
+
+
+
 
     public PlayerData updateTodo(PlayerData player) {
         entityManager.merge(player);
         return player;
     }
 
-    public PlayerData findStudentById(Long id) {
-        return entityManager.find(PlayerData.class, id);
-    }
 
-    public List<PlayerData> getAllStudents() {
-        return entityManager.createQuery("SELECT s from PlayerData s", PlayerData.class).getResultList();
-    }
+
 
 
 }

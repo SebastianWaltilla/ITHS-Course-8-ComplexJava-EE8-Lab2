@@ -7,6 +7,17 @@ import javax.persistence.Id;
 @Entity
 public class PlayerData {
 
+
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
+    private String firstName;
+    private String lastname;
+    private String email;
+    private String phoneNumber;
+
     public PlayerData(String firstName, String lastname, String email, String phoneNumber) {
         this.firstName = firstName;
         this.lastname = lastname;
@@ -17,15 +28,6 @@ public class PlayerData {
     public PlayerData (){
 
     }
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-
-    private String firstName;
-    private String lastname;
-    private String email;
-    private String phoneNumber;
 
     public Long getId() {
         return id;
