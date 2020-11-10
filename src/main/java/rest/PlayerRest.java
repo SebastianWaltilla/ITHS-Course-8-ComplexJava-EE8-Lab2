@@ -38,7 +38,11 @@ public class PlayerRest {
 
     }
 
-
+    @Path("updatePlayer")
+    @PUT
+    public Response updatePlayer(PlayerData player) {
+            return Response.ok(playerService.updatePlayer(player)).build();
+    }
 
 
 

@@ -13,7 +13,7 @@ public class PlayerService {
     @PersistenceContext
     EntityManager entityManager;
 
-        public PlayerData createStudent(PlayerData player) {
+    public PlayerData createStudent(PlayerData player) {
         entityManager.persist(player);
         return player;
     }
@@ -24,6 +24,12 @@ public class PlayerService {
 
     public PlayerData findPlayerById(Long id) {
         return entityManager.find(PlayerData.class, id);
+    }
+
+    public PlayerData updatePlayer(PlayerData player){
+
+        entityManager.merge(player);
+        return player;
     }
 
 
