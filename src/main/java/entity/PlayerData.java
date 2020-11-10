@@ -1,10 +1,25 @@
 package entity;
-
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 @Entity
 public class PlayerData {
 
+    public PlayerData(String firstName, String lastname, String email, String phoneNumber) {
+        this.firstName = firstName;
+        this.lastname = lastname;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+    }
+
+    public PlayerData (){
+
+    }
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     private String firstName;

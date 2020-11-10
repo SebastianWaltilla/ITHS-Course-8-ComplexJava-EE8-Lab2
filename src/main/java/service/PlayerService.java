@@ -10,6 +10,7 @@ import java.util.List;
 @Transactional
 public class PlayerService {
 
+    @PersistenceContext
     EntityManager entityManager;
 
     public PlayerData createStudent(PlayerData player) {
