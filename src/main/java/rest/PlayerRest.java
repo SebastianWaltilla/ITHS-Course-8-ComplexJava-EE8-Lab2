@@ -1,6 +1,7 @@
 package rest;
 
 import entity.PlayerData;
+import exceptions.PlayerNotFoundException;
 import service.PlayerService;
 import javax.inject.Inject;
 import javax.ws.rs.*;
@@ -33,7 +34,12 @@ public class PlayerRest {
     @Path("getPlayerById/{id}")
     @GET
     public Response getPlayerById(@PathParam("id") Long id){
-        return Response.ok(playerService.findPlayerById(id)).build();
+        PlayerData foundMovie = playerService.findPlayerById(id);
+        if (foundMovie != null) {
+            return Response.ok(foundMovie).build();
+        } else {
+            throw new PlayerNotFoundException("Player with ID " + id + " not found.");
+        }
     }
 
     @Path("updatePlayer")
@@ -61,7 +67,11 @@ public class PlayerRest {
     @GET
     public Response getByLastName(@PathParam("name") String name) {
         List<PlayerData> hej = playerService.getByLastName(name);
-        return Response.ok(hej).build();
+        if(hej.size() == 0){
+            return Response.noContent().build();
+        } else{
+            return Response.ok(hej).build();
+        }
     }
 
 
