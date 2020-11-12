@@ -27,20 +27,20 @@ public class PlayerRest {
     @Path("getAllPlayers")
     @GET
     public Response getAllPlayers() {
-        List<PlayerData> hej = playerService.getAllPlayers();
-       if(hej.isEmpty()){
+        List<PlayerData> player = playerService.getAllPlayers();
+       if(player.isEmpty()){
            throw new PlayerNotFoundException("No players in database");
        } else {
-           return Response.ok(hej).build();
+           return Response.ok(player).build();
        }
     }
 
     @Path("getPlayerById/{id}")
     @GET
     public Response getPlayerById(@PathParam("id") Long id){
-        PlayerData foundMovie = playerService.findPlayerById(id);
-        if (foundMovie != null) {
-            return Response.ok(foundMovie).build();
+        PlayerData player = playerService.findPlayerById(id);
+        if (player != null) {
+            return Response.ok(player).build();
         } else {
             throw new PlayerNotFoundException("Player with ID " + id + " not found.");
         }
