@@ -6,7 +6,6 @@ import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.awt.datatransfer.StringSelection;
 import java.util.List;
 
 @Path("item")
@@ -49,7 +48,10 @@ public class PlayerRest {
         PlayerData aPlayer = playerService.findPlayerById(id);
         if (aPlayer != null){
             playerService.deletePlayer(id);
-            return Response.ok(aPlayer).entity("Player with ID " + id + " deleted.").build();
+            return Response.ok(aPlayer)
+                    .entity("Player with ID " + id + " deleted.")
+                    .type(MediaType.TEXT_PLAIN_TYPE)
+                    .build();
         }else  {
             return Response.noContent().build();
         }
