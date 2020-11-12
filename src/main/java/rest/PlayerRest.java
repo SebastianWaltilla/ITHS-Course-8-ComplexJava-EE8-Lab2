@@ -28,7 +28,11 @@ public class PlayerRest {
     @GET
     public Response getAllPlayers() {
         List<PlayerData> hej = playerService.getAllPlayers();
-        return Response.ok(hej).build();
+       if(hej.isEmpty()){
+           throw new PlayerNotFoundException("No players in database");
+       } else {
+           return Response.ok(hej).build();
+       }
     }
 
     @Path("getPlayerById/{id}")

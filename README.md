@@ -6,7 +6,7 @@ Im trying this using Payara 5.2020.5.
 ## POST player
 
 Post a player with json formated data. 
-All fields must be filled except phone number. 
+All fields must be filled except phone number. If a field is missing, you get 400 bad request as answer.
 
 ```html
 localhost:8080/PlayerDataEEDemo/api/v1/item/postPlayer
