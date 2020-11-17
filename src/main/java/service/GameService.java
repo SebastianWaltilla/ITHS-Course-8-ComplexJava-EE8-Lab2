@@ -22,28 +22,18 @@ public class GameService {
         return entityManager.createQuery("SELECT s from Game s", Game.class).getResultList();
     }
 
-    public PlayerData findPlayerById(Long id) {
-        return entityManager.find(PlayerData.class, id);
+    public Game findGameById(Long id) {
+        return entityManager.find(Game.class, id);
     }
 
-    public PlayerData updatePlayer(PlayerData player){
-
-        entityManager.merge(player);
-        return player;
+    public Game updateGame(Game game) {
+        entityManager.merge(game);
+        return game;
     }
 
-
-    public PlayerData deletePlayer(Long id){
-        PlayerData player = entityManager.find(PlayerData.class, id);
-        entityManager.remove(player);
-        return player;
+    public Game deleteGame(Long id) {
+        Game game = entityManager.find(Game.class, id);
+        entityManager.remove(game);
+        return game;
     }
-
-
-    public List<PlayerData> getByLastName(String name) {
-        return entityManager.createQuery("SELECT e FROM PlayerData e WHERE e.lastname = \'"+ name +"\'", PlayerData.class).getResultList();
-
-    }
-
-
 }

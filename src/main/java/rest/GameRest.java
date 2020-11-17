@@ -40,4 +40,29 @@ public class GameRest {
        }
     }
 
+    @Path("updateGame")
+    @PUT
+    public Response updateGame(Game game) {
+        if(game != null)  {
+            return Response.ok(gameService.updateGame(game)).build();
+        } else{
+            throw new PlayerNotFoundException("Something wrong with your json formated game! ");
+        }
+    }
+
+    @Path("deleteGame/{id}")
+    @DELETE
+    public Response deleteItem(@PathParam("id") Long id) {
+        Game aPlayer = gameService.findGameById(id);
+        if (aPlayer != null){
+            gameService.deleteGame(id);
+            return Response.ok(aPlayer)
+                    .entity("Player with ID " + id + " deleted.")
+                    .type(MediaType.TEXT_PLAIN_TYPE)
+                    .build();
+        }else  {
+            return Response.noContent().build();
+        }
+    }
+
 }
