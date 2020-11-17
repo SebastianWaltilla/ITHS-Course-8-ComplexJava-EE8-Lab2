@@ -1,14 +1,16 @@
 package entity;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import java.util.HashSet;
+import java.util.Set;
+
 
 @Entity
-public class PlayerData {
+public class PlayerData { //student
 
-
+    @ManyToOne
+    @JoinColumn(name = "player_coach")
+    private Coach coach;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -22,6 +24,7 @@ public class PlayerData {
     private String email;
 
     private String phoneNumber;
+
 
     public PlayerData(String firstName, String lastname, String email, String phoneNumber) {
         this.firstName = firstName;

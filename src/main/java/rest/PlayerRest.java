@@ -14,6 +14,8 @@ import java.util.List;
 @Produces(MediaType.APPLICATION_JSON)
 public class PlayerRest {
 
+    // http://localhost:8080/PlayerDataEEDemo/h2
+
     @Inject
     PlayerService playerService;
 
