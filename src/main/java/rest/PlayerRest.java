@@ -49,7 +49,11 @@ public class PlayerRest {
     @Path("updatePlayer")
     @PUT
     public Response updatePlayer(PlayerData player) {
+        if(player != null)  {
             return Response.ok(playerService.updatePlayer(player)).build();
+        } else{
+            throw new PlayerNotFoundException("Something wrong with your json formated player! ");
+        }
     }
 
     @Path("deletePlayer/{id}")
