@@ -1,6 +1,6 @@
 # PlayerData API
 
-This API stores players in temporary H2 database while running. 
+This API stores players in temporary entityManager while running. 
 Im trying this using Payara 5.2020.5.
 
 ## POST player
