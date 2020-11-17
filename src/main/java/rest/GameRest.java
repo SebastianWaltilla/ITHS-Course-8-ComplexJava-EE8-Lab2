@@ -32,11 +32,11 @@ public class GameRest {
     @Path("getAllGames")
     @GET
     public Response getAllGames() {
-        List<PlayerData> player = playerService.getAllPlayers();
-       if(player.isEmpty()){
+        List<Game> game = gameService.getAllGames();
+       if(game.isEmpty()){
            throw new PlayerNotFoundException("No players in database");
        } else {
-           return Response.ok(player).build();
+           return Response.ok(game).build();
        }
     }
 

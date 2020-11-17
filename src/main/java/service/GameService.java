@@ -10,8 +10,6 @@ import java.util.List;
 public class GameService {
 
 
-
-
     @PersistenceContext
     EntityManager entityManager;
 
@@ -20,8 +18,8 @@ public class GameService {
         return game;
     }
 
-    public List<PlayerData> getAllPlayers() {
-        return entityManager.createQuery("SELECT s from PlayerData s", PlayerData.class).getResultList();
+    public List<Game> getAllGames() {
+        return entityManager.createQuery("SELECT s from Game s", Game.class).getResultList();
     }
 
     public PlayerData findPlayerById(Long id) {

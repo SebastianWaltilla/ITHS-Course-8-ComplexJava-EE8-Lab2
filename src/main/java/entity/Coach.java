@@ -10,7 +10,6 @@ import javax.validation.constraints.NotNull;
 @Entity
 public class Coach {        //Teacher
 
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
