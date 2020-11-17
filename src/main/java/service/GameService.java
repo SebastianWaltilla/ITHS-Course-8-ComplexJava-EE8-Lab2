@@ -1,14 +1,11 @@
 package service;
 
 import entity.Game;
-import entity.PlayerData;
-
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
 
 public class GameService {
-
 
     @PersistenceContext
     EntityManager entityManager;

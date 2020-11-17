@@ -1,4 +1,6 @@
 package service;
+import entity.Coach;
+import entity.Game;
 import entity.PlayerData;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -10,42 +12,32 @@ import java.util.List;
 @Transactional
 public class CoachService {
 
+
     @PersistenceContext
     EntityManager entityManager;
 
-
-    /*
-        public PlayerData createStudent(PlayerData player) {
-        entityManager.persist(player);
-        return player;
+    public Coach createCoach(Coach coach) {
+        entityManager.persist(coach);
+        return coach;
     }
 
-    public List<PlayerData> getAllPlayers() {
-        return entityManager.createQuery("SELECT s from PlayerData s", PlayerData.class).getResultList();
+    public List<Coach> getAllGames() {
+        return entityManager.createQuery("SELECT s from Coach s", Coach.class).getResultList();
     }
 
-    public PlayerData findPlayerById(Long id) {
-        return entityManager.find(PlayerData.class, id);
+    public Coach findGameById(Long id) {
+        return entityManager.find(Coach.class, id);
     }
 
-    public PlayerData updatePlayer(PlayerData player){
-
-        entityManager.merge(player);
-        return player;
+    public Coach updateGame(Coach coach) {
+        entityManager.merge(coach);
+        return coach;
     }
 
-
-    public PlayerData deletePlayer(Long id){
-        PlayerData player = entityManager.find(PlayerData.class, id);
-        entityManager.remove(player);
-        return player;
+    public Coach deleteGame(Long id) {
+        Coach coach = entityManager.find(Coach.class, id);
+        entityManager.remove(coach);
+        return coach;
     }
-
-
-    public List<PlayerData> getByLastName(String name) {
-        return entityManager.createQuery("SELECT e FROM PlayerData e WHERE e.lastname = \'"+ name +"\'", PlayerData.class).getResultList();
-
-    }
-     */
 
 }

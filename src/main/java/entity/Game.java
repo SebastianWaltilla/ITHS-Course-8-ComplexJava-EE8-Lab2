@@ -31,7 +31,27 @@ public class Game {   //subject
 
 
 
+    public String getGameName() {
+        return gameName;
+    }
 
+    public void setGameName(String gameName) {
+        this.gameName = gameName;
+    }
 
+    public String getCategory() {
+        return category;
+    }
 
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public String getConsole() {
+        return console;
+    }
+
+    public void setConsole(String console) {
+        this.console = console;
+    }
 }

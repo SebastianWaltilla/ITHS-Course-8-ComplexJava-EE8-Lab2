@@ -21,6 +21,19 @@ public class Coach {        //Teacher
     @NotEmpty
     private String console;
 
+
+
+
+
+
+
+
+
+
+
+
+
+
     public String getGameName() {
         return gameName;
     }
