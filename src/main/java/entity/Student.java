@@ -6,11 +6,7 @@ import java.util.Set;
 
 
 @Entity
-public class PlayerData { //student
-
-    @ManyToOne
-    @JoinColumn(name = "player_coach")
-    private Coach coach;
+public class Student { //student // USER
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -25,17 +21,23 @@ public class PlayerData { //student
 
     private String phoneNumber;
 
+    @ManyToMany
+    @JoinTable(name = "student_subject",
+            joinColumns = { @JoinColumn(name = "fk_student") },
+            inverseJoinColumns = { @JoinColumn(name = "fk_subject") })
+    private Set<Subject> subjects = new HashSet<Subject>();
 
-    public PlayerData(String firstName, String lastname, String email, String phoneNumber) {
+
+
+
+    public Student(String firstName, String lastname, String email, String phoneNumber) {
         this.firstName = firstName;
         this.lastname = lastname;
         this.email = email;
         this.phoneNumber = phoneNumber;
     }
 
-    public PlayerData (){
-
-
+    public Student(){
     }
 
     public Long getId() {

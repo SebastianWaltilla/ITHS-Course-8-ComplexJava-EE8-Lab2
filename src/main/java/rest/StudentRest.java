@@ -1,69 +1,69 @@
 package rest;
 
-import entity.PlayerData;
-import exceptions.PlayerNotFoundException;
-import service.PlayerService;
+import entity.Student;
+import exceptions.StudentNotFoundException;
+import service.StudentService;
 import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.List;
 
-@Path("item")
+@Path("student")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
-public class PlayerRest {
+public class StudentRest {
 
     // http://localhost:8080/PlayerDataEEDemo/h2
 
     @Inject
-    PlayerService playerService;
+    StudentService studentService;
 
-    @Path("postPlayer")
+    @Path("postStudent")
     @POST
-    public Response createPlayer(PlayerData player) {
-        playerService.createStudent(player);
+    public Response createStudent(Student player) {
+        studentService.createStudent(player);
         return Response.ok(player).build();
     }
 
-    @Path("getAllPlayers")
+    @Path("getAllStudents")
     @GET
     public Response getAllPlayers() {
-        List<PlayerData> player = playerService.getAllPlayers();
+        List<Student> player = studentService.getAllStudents();
        if(player.isEmpty()){
-           throw new PlayerNotFoundException("No players in database");
+           throw new StudentNotFoundException("No players in database");
        } else {
            return Response.ok(player).build();
        }
     }
 
-    @Path("getPlayerById/{id}")
+    @Path("getStudentById/{id}")
     @GET
     public Response getPlayerById(@PathParam("id") Long id){
-        PlayerData player = playerService.findPlayerById(id);
+        Student player = studentService.findStudentById(id);
         if (player != null) {
             return Response.ok(player).build();
         } else {
-            throw new PlayerNotFoundException("Player with ID " + id + " not found.");
+            throw new StudentNotFoundException("Player with ID " + id + " not found.");
         }
     }
 
-    @Path("updatePlayer")
+    @Path("updateStudent")
     @PUT
-    public Response updatePlayer(PlayerData player) {
+    public Response updatePlayer(Student player) {
         if(player != null)  {
-            return Response.ok(playerService.updatePlayer(player)).build();
+            return Response.ok(studentService.updateStudent(player)).build();
         } else{
-            throw new PlayerNotFoundException("Something wrong with your json formated player! ");
+            throw new StudentNotFoundException("Something wrong with your json formated player! ");
         }
     }
 
-    @Path("deletePlayer/{id}")
+    @Path("deleteStudent/{id}")
     @DELETE
     public Response deleteItem(@PathParam("id") Long id) {
-        PlayerData aPlayer = playerService.findPlayerById(id);
+        Student aPlayer = studentService.findStudentById(id);
         if (aPlayer != null){
-            playerService.deletePlayer(id);
+            studentService.deleteStudent(id);
             return Response.ok(aPlayer)
                     .entity("Player with ID " + id + " deleted.")
                     .type(MediaType.TEXT_PLAIN_TYPE)
@@ -73,10 +73,10 @@ public class PlayerRest {
         }
     }
 
-    @Path("getByLastName/{name}")
+    @Path("getStudentByLastName/{name}")
     @GET
     public Response getByLastName(@PathParam("name") String name) {
-        List<PlayerData> hej = playerService.getByLastName(name);
+        List<Student> hej = studentService.getByLastName(name);
         if(hej.size() == 0){
             return Response.noContent().build();
         } else{

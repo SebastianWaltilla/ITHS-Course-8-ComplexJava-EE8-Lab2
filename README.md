@@ -1,7 +1,21 @@
-# PlayerData API
+# School schema for subjects, students and teachers.
 
-This API stores players in temporary entityManager while running. 
-Im trying this using Payara 5.2020.5.
+GET all subjects
+GET Single student with they subjects
+GET all students by teacher
+GET all students by subject and teacher
+GET all student by subject
+
+POST Subject (containing subject (as string) and student id)
+POST Student (containing student (field Strings) and subject id)
+POST Teacher (containing teacher (as string) and subject id)
+
+PUT Subject
+PUT Student
+PUT Teacher
+
+
+
 
 ## POST player
 
