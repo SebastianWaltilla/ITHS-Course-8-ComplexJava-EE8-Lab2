@@ -24,7 +24,7 @@ public class SchoolDataGenerator {
         Student student3 = new Student("Mia", "Uhh", "mia@Uhh.me", "031-223311");
 
         Subject subject1 = new Subject("Java");
-        Subject subject2 = new Subject("C#)");
+        Subject subject2 = new Subject("C#");
         Subject subject3 = new Subject("Javascript");
 
         Teacher teacher1 = new Teacher("Johan Svensson");

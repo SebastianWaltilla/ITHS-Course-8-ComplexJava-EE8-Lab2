@@ -15,7 +15,7 @@ public class Teacher {
     private Long id;
 
     @NotEmpty
-    private String teacher;
+    private String teacherName;
 
     @OneToMany(mappedBy = "teacher", cascade = CascadeType.PERSIST)
     private Set<Subject> subjects = new HashSet<>();
@@ -28,7 +28,7 @@ public class Teacher {
 
     // konstruktor utan ID -------------------
     public Teacher(String teacherName) {
-        this.teacher = teacherName;
+        this.teacherName = teacherName;
     }
 
     public Teacher() {
@@ -38,11 +38,11 @@ public class Teacher {
 
 
     public String getName() {
-        return teacher;
+        return teacherName;
     }
 
     public void setName(String name) {
-        this.teacher = name;
+        this.teacherName = name;
     }
 
 

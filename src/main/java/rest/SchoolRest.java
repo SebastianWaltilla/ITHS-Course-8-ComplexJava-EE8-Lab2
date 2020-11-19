@@ -45,6 +45,29 @@ public class SchoolRest {
     }
 
 
+    @Path("getStudentsBySubjectAndTeacher/{subject}/{teacherName}")
+    @GET
+    public Response getPlayerById(@PathParam("subject") String name,@PathParam("teacherName") String studentfirstName){
+        List<Student> player = schoolService.getSubjectAndCourseByteacher(name,studentfirstName);
+        if (player != null) {
+            return Response.ok(player).build();
+        } else {
+            throw new StudentNotFoundException("Player with ID " + name + " not found.");
+        }
+    }
 
+/*
+
+    @Path("getTeacherBySubjectAndTeacher/{subject}/{studentfirstName}")
+    @GET
+    public Response getPlayerById(@PathParam("subject") String name,@PathParam("studentfirstName") String studentfirstName){
+        List<Student> player = schoolService.getTeacherBySubjectAndTeacher(name,studentfirstName);
+        if (player != null) {
+            return Response.ok(player).build();
+        } else {
+            throw new StudentNotFoundException("Player with ID " + name + " not found.");
+        }
+    }
+ */
 
 }
