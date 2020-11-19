@@ -21,6 +21,7 @@ public class Subject {
     private Set<Student> students = new HashSet<>();
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "teacher_id")
     private Teacher teacher;
 
 
@@ -37,6 +38,8 @@ public class Subject {
     public void setTeacher(Teacher teacher){
         this.teacher = teacher;
     }
+
+    // Anton säger att detta skall bort D:
     public Set<Student> getStudents() {
         return students;
     }

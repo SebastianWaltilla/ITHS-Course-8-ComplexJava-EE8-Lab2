@@ -1,8 +1,12 @@
 package rest;
 
 import entity.Student;
+import entity.Subject;
 import exceptions.StudentNotFoundException;
+import service.SchoolService;
 import service.StudentService;
+import service.SubjectService;
+import service.TeacherService;
 
 import javax.inject.Inject;
 import javax.ws.rs.*;
@@ -15,22 +19,32 @@ import java.util.List;
 @Produces(MediaType.APPLICATION_JSON)
 public class SchoolRest {
 
-
-
     @Inject
     StudentService studentService;
+    @Inject
+    SubjectService subjectService;
+    @Inject
+    TeacherService teacherService;
+
+    @Inject
+    SchoolService schoolService;
 
 
 
-    @Path("getAllStudents")
+
+
+    @Path("getStudentAndHisSubjectByFirstName/{firstName}")
     @GET
-    public Response getAllPlayers() {
-        List<Student> students = studentService.getAllStudents();
-        if(students.isEmpty()){
-            throw new StudentNotFoundException("No players in database");
+    public Response getPlayerById(@PathParam("firstName") String name){
+        List<Student> player = schoolService.getStudentAndHisSubjectByFirstName(name);
+        if (player != null) {
+            return Response.ok(player).build();
         } else {
-            return Response.ok(students).build();
+            throw new StudentNotFoundException("Player with ID " + name + " not found.");
         }
     }
+
+
+
 
 }
