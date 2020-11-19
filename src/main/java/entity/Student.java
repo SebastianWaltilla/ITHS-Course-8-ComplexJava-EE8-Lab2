@@ -4,9 +4,8 @@ import javax.validation.constraints.NotEmpty;
 import java.util.HashSet;
 import java.util.Set;
 
-
 @Entity
-public class Student { //student // USER
+public class Student {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -28,8 +27,6 @@ public class Student { //student // USER
         subjects.add(subject);
         subject.getStudents().add(this);
     }
-
-
 
     public Student(String firstName, String lastname, String email, String phoneNumber) {
         this.firstName = firstName;
@@ -72,8 +69,6 @@ public class Student { //student // USER
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
-
-
 
     public void setSubjects(Set<Subject> subjects) {
         this.subjects = subjects;

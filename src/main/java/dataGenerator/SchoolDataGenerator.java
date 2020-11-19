@@ -27,9 +27,9 @@ public class SchoolDataGenerator {
         Subject subject2 = new Subject("C#");
         Subject subject3 = new Subject("Javascript");
 
-        Teacher teacher1 = new Teacher("Johan Svensson");
-        Teacher teacher2 = new Teacher("Kicks Jansson");
-        Teacher teacher3 = new Teacher("Olle Strömberg");
+        Teacher teacher1 = new Teacher("JohanSvensson");
+        Teacher teacher2 = new Teacher("KicksJansson");
+        Teacher teacher3 = new Teacher("OlleStrömberg");
 
         // fyll med refferenser
 

@@ -1,13 +1,8 @@
 package rest;
 
 import entity.Student;
-import entity.Subject;
-import exceptions.StudentNotFoundException;
+import exceptions.NotFoundException;
 import service.SchoolService;
-import service.StudentService;
-import service.SubjectService;
-import service.TeacherService;
-
 import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -20,18 +15,7 @@ import java.util.List;
 public class SchoolRest {
 
     @Inject
-    StudentService studentService;
-    @Inject
-    SubjectService subjectService;
-    @Inject
-    TeacherService teacherService;
-
-    @Inject
     SchoolService schoolService;
-
-
-
-
 
     @Path("getStudentAndHisSubjectByFirstName/{firstName}")
     @GET
@@ -40,34 +24,18 @@ public class SchoolRest {
         if (player != null) {
             return Response.ok(player).build();
         } else {
-            throw new StudentNotFoundException("Player with ID " + name + " not found.");
+            throw new NotFoundException("Student with name: " + name + " not found.");
         }
     }
-
 
     @Path("getStudentsBySubjectAndTeacher/{subject}/{teacherName}")
     @GET
-    public Response getPlayerById(@PathParam("subject") String name,@PathParam("teacherName") String studentfirstName){
-        List<Student> player = schoolService.getSubjectAndCourseByteacher(name,studentfirstName);
+    public Response getPlayerById(@PathParam("subject") String subject,@PathParam("teacherName") String teacherName){
+        List<Student> player = schoolService.getSubjectAndCourseByteacher(subject,teacherName);
         if (player != null) {
             return Response.ok(player).build();
         } else {
-            throw new StudentNotFoundException("Player with ID " + name + " not found.");
+            throw new NotFoundException("Teacher has no subject with name: " + subject + " or Teacher with name: " + teacherName + "not found.");
         }
     }
-
-/*
-
-    @Path("getTeacherBySubjectAndTeacher/{subject}/{studentfirstName}")
-    @GET
-    public Response getPlayerById(@PathParam("subject") String name,@PathParam("studentfirstName") String studentfirstName){
-        List<Student> player = schoolService.getTeacherBySubjectAndTeacher(name,studentfirstName);
-        if (player != null) {
-            return Response.ok(player).build();
-        } else {
-            throw new StudentNotFoundException("Player with ID " + name + " not found.");
-        }
-    }
- */
-
 }

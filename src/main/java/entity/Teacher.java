@@ -8,8 +8,6 @@ import java.util.Set;
 @Entity
 public class Teacher {
 
-    // teacher / Buyer has multiple subjects
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -25,8 +23,6 @@ public class Teacher {
         subject.setTeacher(this);
     }
 
-
-    // konstruktor utan ID -------------------
     public Teacher(String teacherName) {
         this.teacherName = teacherName;
     }
@@ -35,8 +31,6 @@ public class Teacher {
     }
 
     // Getters/Setters
-
-
     public String getName() {
         return teacherName;
     }
@@ -44,7 +38,6 @@ public class Teacher {
     public void setName(String name) {
         this.teacherName = name;
     }
-
 
     public void setSubjects(Set<Subject> subjects) {
         this.subjects = subjects;
