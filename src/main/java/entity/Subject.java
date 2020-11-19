@@ -2,7 +2,10 @@ package entity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import java.util.HashSet;
+import java.util.Set;
 
+// select * from buyer innerjoin
 @Entity
 public class Subject {
 
@@ -14,11 +17,55 @@ public class Subject {
     @NotEmpty
     private String category;
 
-    @ManyToMany
-    private Student student;
+    @ManyToMany(mappedBy = "subjects", cascade = CascadeType.PERSIST)
+    private Set<Student> students = new HashSet<>();
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Teacher teacher;
 
-    // Getter/Setter
+
+    // konstruktor utan ID -----------------
+    public Subject(String category) {
+        this.category = category;
+    }
+
+    public Subject() {
+    }
+
+// Getter/Setter
+
+    public void setTeacher(Teacher teacher){
+        this.teacher = teacher;
+    }
+    public Set<Student> getStudents() {
+        return students;
+    }
+
+
+
+
+
+
+
+
+
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+
+
+    public void setStudents(Set<Student> students) {
+        this.students = students;
+    }
+
+    public Teacher getTeacher() {
+        return teacher;
+    }
+
 }

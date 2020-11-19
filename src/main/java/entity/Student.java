@@ -21,13 +21,14 @@ public class Student { //student // USER
 
     private String phoneNumber;
 
-    @ManyToMany
-    @JoinTable(name = "student_subject",
-            joinColumns = { @JoinColumn(name = "fk_student") },
-            inverseJoinColumns = { @JoinColumn(name = "fk_subject") })
-    private Set<Subject> subjects = new HashSet<Subject>();
+    @ManyToMany(cascade = CascadeType.PERSIST)
+    private Set<Subject> subjects = new HashSet<>();
 
-
+    // Denna skall användas i vår datagenerator
+    public void addSubject(Subject subject){
+        subjects.add(subject);
+        subject.getStudents().add(this);
+    }
 
 
     public Student(String firstName, String lastname, String email, String phoneNumber) {
@@ -38,14 +39,6 @@ public class Student { //student // USER
     }
 
     public Student(){
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getFirstName() {
@@ -80,4 +73,11 @@ public class Student { //student // USER
         this.phoneNumber = phoneNumber;
     }
 
+    public Set<Subject> getSubjects() {
+        return subjects;
+    }
+
+    public void setSubjects(Set<Subject> subjects) {
+        this.subjects = subjects;
+    }
 }

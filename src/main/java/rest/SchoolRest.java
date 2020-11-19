@@ -1,15 +1,14 @@
 package rest;
 
 import entity.Student;
+import exceptions.StudentNotFoundException;
 import service.StudentService;
 
 import javax.inject.Inject;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.List;
 
 @Path("school")
 @Consumes(MediaType.APPLICATION_JSON)
@@ -23,12 +22,15 @@ public class SchoolRest {
 
 
 
-    //--------------------- student REST
-    @Path("postStudent")
-    @POST
-    public Response createStudent(Student player) {
-        studentService.createStudent(player);
-        return Response.ok(player).build();
+    @Path("getAllStudents")
+    @GET
+    public Response getAllPlayers() {
+        List<Student> students = studentService.getAllStudents();
+        if(students.isEmpty()){
+            throw new StudentNotFoundException("No players in database");
+        } else {
+            return Response.ok(students).build();
+        }
     }
 
 }
