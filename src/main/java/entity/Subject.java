@@ -18,15 +18,19 @@ public class Subject {
     @ManyToMany(mappedBy = "subjects", cascade = CascadeType.PERSIST)
     private Set<Student> students = new HashSet<>();
 
+    //@JoinColumn(name = "student_id")
+
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "teacher_id")
     private Teacher teacher;
+
+    //@JoinColumn(name = "teacher_id")
+
+
+    public Subject() {
+    }
 
     public Subject(String category) {
         this.category = category;
-    }
-
-    public Subject() {
     }
 
     public void setTeacher(Teacher teacher){
@@ -37,6 +41,8 @@ public class Subject {
     public Set<Student> getStudents() {
         return students;
     }
+
+
 
     public String getCategory() {
         return category;

@@ -1,10 +1,14 @@
 package service;
 
 import entity.Student;
+import entity.Subject;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
+import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 
 @Transactional
 public class SchoolService {
@@ -18,10 +22,13 @@ public class SchoolService {
     inner join subject
     where FIRSTNAME = 'Leo'
      */
-    public  List<Student> getStudentAndHisSubjectByFirstName(String name) {
+    public  List<Subject> getStudentAndHisSubjectByFirstName(String name) {
 
-        return entityManager.createQuery("SELECT su.category, st.firstName FROM Subject su inner join Student st  WHERE st.firstName = \'"
-                + name +"\'", Student.class).getResultList();
+            return entityManager
+                    .createQuery("SELECT s FROM Subject s WHERE s.category =\'" + name + "\'", Subject.class)
+                    .getResultList();
+
+
     }
 
     /*
@@ -32,9 +39,16 @@ public class SchoolService {
     INNER JOIN STUDENT
     WHERE TEACHERNAME = 'Johan Svensson'  AND CATEGORY = 'Java'
      */
-    public List<Student> getSubjectAndCourseByteacher(String subject, String teacherName) {
+    public Set<Student> getStudentsBySubjectAndTeacher(String subjectName, String teacherName) {
 
-        return entityManager.createQuery("SELECT su.category, st.firstName FROM Subject su INNER JOIN Teacher te INNER JOIN Student st WHERE te.teacherName = \'"
-                + teacherName + "\' AND su.category = \'" + subject + "\'", Student.class).getResultList();
+       Subject subject = (Subject) entityManager
+                .createQuery("SELECT DISTINCT i FROM Subject i INNER JOIN i.teacher t INNER JOIN i.students s WHERE t.teacherName = :teacherName AND i.category =:subjectName")
+                .setParameter("teacherName", teacherName).setParameter("subjectName", subjectName).getSingleResult();
+        Set<Student> studentsResult = subject.getStudents();
+        return studentsResult;
+
     }
+
+
+
 }

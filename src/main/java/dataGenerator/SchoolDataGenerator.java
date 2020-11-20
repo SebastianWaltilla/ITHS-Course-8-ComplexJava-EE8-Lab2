@@ -19,6 +19,10 @@ public class SchoolDataGenerator {
     @PostConstruct
     public void generateData() {
 
+        // Sökning  Java/JohanSvensson bör ge 4 studenter som läser Java
+        //          PHP/JohanSvensson bör ge 3 studenter som läser PHP
+        //          Javascript(KicksJansson bör ge 1 student som läser Javascript
+
         Student student1 = new Student("Anton", "Månpuss", "Anton@Månpuss.nu", "031-010101");
         Student student2 = new Student( "Leo", "Lejon", "Leo@Lejon.nu", "0708-222333");
         Student student3 = new Student("Mia", "Uhh", "mia@Think.me", "031-223311");
@@ -30,21 +34,27 @@ public class SchoolDataGenerator {
 
         Teacher teacher1 = new Teacher("JohanSvensson");
         Teacher teacher2 = new Teacher("KicksJansson");
-        Teacher teacher3 = new Teacher("OlleStrömberg");
+
 
         // fyll med refferenser
 
         student1.addSubject(subject1);
-        student1.addSubject(subject2);
-        student1.addSubject(subject3);
         student2.addSubject(subject1);
+        student3.addSubject(subject1);
+        student4.addSubject(subject1);
+
+
+        student1.addSubject(subject2);
         student2.addSubject(subject2);
-        student3.addSubject(subject3);
+        student3.addSubject(subject2);
 
         student4.addSubject(subject3);
 
         teacher1.addSubject(subject1);
-        teacher2.addSubject(subject2);
+        teacher1.addSubject(subject2);
+        teacher2.addSubject(subject3);
+
+
 
         // Send to entityManager
         entityManager.persist(student1);
@@ -53,7 +63,6 @@ public class SchoolDataGenerator {
         entityManager.persist(student4);
         entityManager.persist(teacher1);
         entityManager.persist(teacher2);
-        entityManager.persist(teacher3);
 
     }
 }
