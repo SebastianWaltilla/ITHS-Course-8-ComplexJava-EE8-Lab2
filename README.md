@@ -15,7 +15,7 @@ Example url's to send:
 localhost:8080/PlayerDataEEDemo/api/v1/school/getAllStudentBySubject/PHP
 ```
 
-Example data to received:
+Example data received:
 ```json
 [
   {
