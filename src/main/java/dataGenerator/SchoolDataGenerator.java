@@ -23,7 +23,7 @@ public class SchoolDataGenerator {
         //          PHP/JohanSvensson bör ge 3 studenter som läser PHP
         //          Javascript(KicksJansson bör ge 1 student som läser Javascript
 
-        Student student1 = new Student("Anton", "Månpuss", "Anton@Månpuss.nu", "031-010101");
+        Student student1 = new Student("Anton", "Vretander", "Anton@Vretander.nu", "031-010101");
         Student student2 = new Student( "Leo", "Lejon", "Leo@Lejon.nu", "0708-222333");
         Student student3 = new Student("Mia", "Uhh", "mia@Think.me", "031-223311");
         Student student4 = new Student("Li", "Fei", "Li@Fei.me", "0322-776655");

@@ -19,18 +19,17 @@ public class SchoolRest {
     @Inject
     SchoolService schoolService;
 
-
-
-    @Path("getstudentssubjectsbyfirstname/{firstName}")
+    @Path("getAllStudentBySubject/{subject}")
     @GET
-    public Response getPlayerById(@PathParam("firstName") String name){
-        List<Subject> player = schoolService.getStudentAndHisSubjectByFirstName(name);
+    public Response getPlayerById(@PathParam("subject") String name){
+        List<Subject> player = schoolService.getAllStudentBySubject(name);
         if (player != null) {
             return Response.ok(player).build();
         } else {
             throw new NotFoundException("Student with name: " + name + " not found.");
         }
     }
+
 
     @Path("getStudentsBySubjectAndTeacher/{subject}/{teacherName}")
     @GET

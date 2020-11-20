@@ -16,29 +16,17 @@ public class SchoolService {
     @PersistenceContext
     EntityManager entityManager;
 
-    /*
-    ● En student ska kunna ha flera ämnen.
-    select * from student
-    inner join subject
-    where FIRSTNAME = 'Leo'
-     */
-    public  List<Subject> getStudentAndHisSubjectByFirstName(String name) {
+    //● En student ska kunna ha flera ämnen.
+    public  List<Subject> getAllStudentBySubject(String name) {
 
-            return entityManager
-                    .createQuery("SELECT s FROM Subject s WHERE s.category =\'" + name + "\'", Subject.class)
-                    .getResultList();
-
-
+        return entityManager
+                .createQuery("SELECT s FROM Subject s WHERE s.category =\'" + name + "\'", Subject.class)
+                .getResultList();
     }
 
-    /*
-    ● En lärare ska kunna ha ett ämne och ett antal elever
-    ● Samma lärare ska kunna ha ett annat ämne och ett antal (andra) elever.
-    SELECT  CATEGORY, FIRSTNAME FROM SUBJECT
-    INNER JOIN TEACHER
-    INNER JOIN STUDENT
-    WHERE TEACHERNAME = 'Johan Svensson'  AND CATEGORY = 'Java'
-     */
+    //● En lärare ska kunna ha ett ämne och ett antal elever
+    //● Samma lärare ska kunna ha ett annat ämne och ett antal (andra) elever.
+
     public Set<Student> getStudentsBySubjectAndTeacher(String subjectName, String teacherName) {
 
        Subject subject = (Subject) entityManager
@@ -46,9 +34,6 @@ public class SchoolService {
                 .setParameter("teacherName", teacherName).setParameter("subjectName", subjectName).getSingleResult();
         Set<Student> studentsResult = subject.getStudents();
         return studentsResult;
-
     }
-
-
 
 }
